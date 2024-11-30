@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://bprg2q2p4sedv"]
+
+[ext_resource type="Texture2D" uid="uid://dou46vhxmn1f6" path="res://assets/backdrop.png" id="1_3jmn7"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_e7viw"]
+[ext_resource type="AudioStream" uid="uid://ch3x4vw25fp0e" path="res://assets/sfx/menu boop.wav" id="2_rcxey"]
+[ext_resource type="Texture2D" uid="uid://cabyo8rw2bp6t" path="res://assets/logo.png" id="2_xgp7a"]
+[ext_resource type="Theme" uid="uid://ba2fx5n2n3jyc" path="res://resources/UI_theme.tres" id="3_08c7b"]
+
+[node name="Credits" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e7viw")
+sound = ExtResource("2_rcxey")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_3jmn7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Column1" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="TitleButton" type="Button" parent="MarginContainer/HBoxContainer/Column1"]
+layout_mode = 2
+theme = ExtResource("3_08c7b")
+text = "Return to Title"
+
+[node name="Column2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Column2"]
+custom_minimum_size = Vector2(288, 96)
+layout_mode = 2
+texture = ExtResource("2_xgp7a")
+stretch_mode = 5
+
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/HBoxContainer/Column2"]
+layout_mode = 2
+theme = ExtResource("3_08c7b")
+theme_override_font_sizes/font_size = 36
+text = "Go Crazy!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Column2"]
+layout_mode = 2
+theme_override_constants/margin_top = 130
+
+[node name="KevinLabel" type="Label" parent="MarginContainer/HBoxContainer/Column2"]
+layout_mode = 2
+theme = ExtResource("3_08c7b")
+text = "Game created by Kevin Mortimer (FrankHenry)"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/Column2"]
+layout_mode = 2
+theme_override_constants/margin_top = 150
+
+[node name="FontLabel" type="Label" parent="MarginContainer/HBoxContainer/Column2"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_08c7b")
+text = "Monogram font by datagoblin"
+horizontal_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/Column2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_08c7b")
+text = "Monogram font by datagoblin"
+uri = "https://datagoblin.itch.io/monogram"
+
+[node name="Column3" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/Column3"]
+layout_mode = 2
+theme = ExtResource("3_08c7b")
+text = "Quit Game"

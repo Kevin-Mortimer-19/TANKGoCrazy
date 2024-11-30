@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://drc2kamlelccq"]
+
+[ext_resource type="Script" path="res://scripts/gunner.gd" id="1_j1h57"]
+[ext_resource type="Script" path="res://scripts/enemy_sight_line.gd" id="2_g1bc1"]
+[ext_resource type="AudioStream" uid="uid://bqbb7sc061ipo" path="res://assets/sfx/shoot enemy.wav" id="2_k78ri"]
+[ext_resource type="AudioStream" uid="uid://dk02i2ogv2ikl" path="res://assets/sfx/explosion small.wav" id="3_5gr50"]
+[ext_resource type="Script" path="res://scripts/gunner_type.gd" id="3_8456i"]
+[ext_resource type="Texture2D" uid="uid://cg3u0o6nngq1f" path="res://assets/gun enemy.png" id="4_j52le"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nba25"]
+radius = 2.5
+height = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g60u3"]
+atlas = ExtResource("4_j52le")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emigf"]
+atlas = ExtResource("4_j52le")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqxyt"]
+atlas = ExtResource("4_j52le")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smamp"]
+atlas = ExtResource("4_j52le")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vdvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g60u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emigf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqxyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smamp")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
+
+[node name="Gunner" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_j1h57")
+shoot_sound = ExtResource("2_k78ri")
+die_sound = ExtResource("3_5gr50")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nba25")
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemySightLine" type="RayCast2D" parent="."]
+collision_mask = 9
+collide_with_areas = true
+script = ExtResource("2_g1bc1")
+
+[node name="WallSightLine" type="RayCast2D" parent="."]
+collision_mask = 8
+collide_with_areas = true
+
+[node name="EnemyType" type="Node2D" parent="."]
+script = ExtResource("3_8456i")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-4, -4, 8, 8)
+
+[node name="EndOfBarrel" type="Marker2D" parent="."]
+position = Vector2(-2.5, 0)
+gizmo_extents = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.19209e-07, -1.19209e-07)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_5vdvm")
+animation = &"move"

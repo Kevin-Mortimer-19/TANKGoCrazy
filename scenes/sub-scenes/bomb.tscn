@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5gd0j70cuyks"]
+
+[ext_resource type="Script" path="res://scripts/bomb.gd" id="1_2ptql"]
+[ext_resource type="Texture2D" uid="uid://crebjxrqrhm7v" path="res://assets/bomb.png" id="1_k0hxn"]
+[ext_resource type="AudioStream" uid="uid://dvxkmuutuhx3k" path="res://assets/sfx/enemy death.wav" id="2_41wa0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t4eer"]
+radius = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ext"]
+atlas = ExtResource("1_k0hxn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ir5a"]
+atlas = ExtResource("1_k0hxn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rgn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ext")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ir5a")
+}],
+"loop": true,
+"name": &"active",
+"speed": 2.0
+}]
+
+[node name="Bomb" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_2ptql")
+explode_sound = ExtResource("2_41wa0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t4eer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7rgn1")
+animation = &"active"

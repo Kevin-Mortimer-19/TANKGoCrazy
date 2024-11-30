@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtxpv35tm8aje"]
+
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="1_ll7qi"]
+[ext_resource type="Texture2D" uid="uid://c2jaxgo1nq6rl" path="res://assets/health_bar.png" id="2_yljxj"]
+
+[sub_resource type="Theme" id="Theme_pocj8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo7yb"]
+atlas = ExtResource("2_yljxj")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j5jq"]
+atlas = ExtResource("2_yljxj")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlb64"]
+atlas = ExtResource("2_yljxj")
+region = Rect2(16, 0, 16, 48)
+
+[node name="HUD" type="MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource("Theme_pocj8")
+value = 50.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_qo7yb")
+texture_over = SubResource("AtlasTexture_0j5jq")
+texture_progress = SubResource("AtlasTexture_dlb64")
+script = ExtResource("1_ll7qi")

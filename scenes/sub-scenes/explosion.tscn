@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4oinrcersmnn"]
+
+[ext_resource type="Texture2D" uid="uid://d2ito2mjsdu0h" path="res://assets/explosion.png" id="1_lasd3"]
+[ext_resource type="Script" path="res://scripts/death_cloud.gd" id="2_foy25"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nygvj"]
+atlas = ExtResource("1_lasd3")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i2m5"]
+atlas = ExtResource("1_lasd3")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uihfk"]
+atlas = ExtResource("1_lasd3")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuprs"]
+atlas = ExtResource("1_lasd3")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7xdo"]
+atlas = ExtResource("1_lasd3")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghn8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nygvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i2m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uihfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuprs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7xdo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="DeathCloud" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ghn8x")
+script = ExtResource("2_foy25")

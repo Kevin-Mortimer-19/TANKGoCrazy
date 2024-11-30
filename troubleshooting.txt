@@ -1,0 +1,11 @@
+When fired, bullets would continue to rotate with the player's gun
+
+This was because they were being added as children of the gun, and inheriting its rotation value
+
+I fixed it by instantiating them as children to the root node for the level.
+
+Once I did that, the bullets appeared at the upper left corner, instead of the gun's barrel.
+
+This is because I was using the relative position of the gun's barrel, which didn't include its parent (the player)'s position
+
+using the gun barrel's global position fixed the last of the issues

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu34sipfe6wdp"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_j82k5"]
+[ext_resource type="TileSet" uid="uid://dymsq555usb0w" path="res://scenes/levels/tiles.tres" id="2_4uako"]
+[ext_resource type="Script" path="res://scripts/enemy_collection.gd" id="3_e10pd"]
+[ext_resource type="PackedScene" uid="uid://p70va4blooki" path="res://scenes/player.tscn" id="4_prun2"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="5_cy8mg"]
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "camera", "tilemap")]
+process_mode = 1
+script = ExtResource("1_j82k5")
+player = NodePath("Player")
+camera = NodePath("Camera2D")
+tilemap = NodePath("TileMapLayer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -2
+tile_set = ExtResource("2_4uako")
+
+[node name="EnemyCollection" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_e10pd")
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("4_prun2")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("5_cy8mg")

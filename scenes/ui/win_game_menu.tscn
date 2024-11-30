@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddamwhu2wypt2"]
+
+[ext_resource type="Script" path="res://scripts/win_game_menu.gd" id="1_hmcqs"]
+[ext_resource type="Theme" uid="uid://ba2fx5n2n3jyc" path="res://resources/UI_theme.tres" id="2_w7sg4"]
+[ext_resource type="AudioStream" uid="uid://ch3x4vw25fp0e" path="res://assets/sfx/menu boop.wav" id="2_yprng"]
+
+[node name="WinGameMenu" type="MarginContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hmcqs")
+sound = ExtResource("2_yprng")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_w7sg4")
+text = "Congratulations, You Won!"
+
+[node name="NextButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w7sg4")
+text = "Title"
+
+[node name="Credits Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w7sg4")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w7sg4")
+text = "Exit"

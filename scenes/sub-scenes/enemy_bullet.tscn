@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://b352bur8nlv8b"]
+
+[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_418cg"]
+[ext_resource type="Texture2D" uid="uid://bykhpfvoix8nf" path="res://assets/enemy bullet.png" id="1_d4kq8"]
+[ext_resource type="AudioStream" uid="uid://b1y6qk2mgtnip" path="res://assets/sfx/plink.wav" id="2_7xcpf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fw0ye"]
+radius = 0.5
+
+[sub_resource type="Animation" id="Animation_ry5h0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_utbe0"]
+resource_name = "break"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fojq4"]
+_data = {
+"RESET": SubResource("Animation_ry5h0"),
+"break": SubResource("Animation_utbe0")
+}
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_418cg")
+plink_sound = ExtResource("2_7xcpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d4kq8")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fw0ye")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fojq4")
+}

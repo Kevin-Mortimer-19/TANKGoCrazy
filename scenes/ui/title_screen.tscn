@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7jatwgm48ggq"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_45b0r"]
+[ext_resource type="Texture2D" uid="uid://dou46vhxmn1f6" path="res://assets/backdrop.png" id="2_76th3"]
+[ext_resource type="AudioStream" uid="uid://ch3x4vw25fp0e" path="res://assets/sfx/menu boop.wav" id="2_ex013"]
+[ext_resource type="Texture2D" uid="uid://cabyo8rw2bp6t" path="res://assets/logo.png" id="3_eb2y7"]
+[ext_resource type="Theme" uid="uid://ba2fx5n2n3jyc" path="res://resources/UI_theme.tres" id="4_edrwc"]
+
+[node name="Title Screen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45b0r")
+sound = ExtResource("2_ex013")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("2_76th3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.5
+offset_top = -46.5
+offset_right = 57.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(288, 96)
+layout_mode = 2
+texture = ExtResource("3_eb2y7")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("4_edrwc")
+theme_override_font_sizes/font_size = 36
+text = "Go Crazy!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_edrwc")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_edrwc")
+text = "Quit
+"

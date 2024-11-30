@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnd7rl3wspxu8"]
+
+[ext_resource type="Script" path="res://scripts/bomber.gd" id="1_oukqo"]
+[ext_resource type="AudioStream" uid="uid://dk02i2ogv2ikl" path="res://assets/sfx/explosion small.wav" id="2_fmv44"]
+[ext_resource type="Texture2D" uid="uid://hgb7sbnvge34" path="res://assets/enemy.png" id="2_m7vr0"]
+[ext_resource type="Script" path="res://scripts/enemy_sight_line.gd" id="3_aubex"]
+[ext_resource type="Script" path="res://scripts/bomber_type.gd" id="4_f8kw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqiah"]
+atlas = ExtResource("2_m7vr0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obyr2"]
+atlas = ExtResource("2_m7vr0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbupw"]
+atlas = ExtResource("2_m7vr0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3dh7"]
+atlas = ExtResource("2_m7vr0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vdvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqiah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obyr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbupw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3dh7")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nba25"]
+radius = 2.5
+height = 8.0
+
+[node name="Bomber" type="CharacterBody2D"]
+process_mode = 1
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_oukqo")
+die_sound = ExtResource("2_fmv44")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.19209e-07, -1.19209e-07)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_5vdvm")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nba25")
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BombTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemySightLine" type="RayCast2D" parent="."]
+collision_mask = 9
+script = ExtResource("3_aubex")
+
+[node name="WallSightLine" type="RayCast2D" parent="."]
+collision_mask = 8
+collide_with_areas = true
+
+[node name="EnemyType" type="Node2D" parent="."]
+script = ExtResource("4_f8kw0")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-4, -4, 8, 8)
